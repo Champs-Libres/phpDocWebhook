@@ -75,7 +75,7 @@ if (!isset($headers['X-Github-Event'])) {
    $output[] = "github header missing";
    exit();
 }
-if ($headers['X-Github-Event'] !== 'push') {
+if (!in_array($headers['X-Github-Event'], array( 'push', 'ping')) {
    header('HTTP/1.0 400 only push event allowed');
    echo 'only push event allowed';
    $output[] = "only push event allowed";
@@ -158,6 +158,10 @@ if (!file_exists($clonePath)) {
 }
 
 //extract ref and switch to ref
+if ($headers['X-Github-Event'] === 'ping') { //if ping, we work on master branch
+   $payload['ref'] = 'refs/heads/master';
+}
+
 $refs = explode('/', $payload['ref']);
 
 if ($refs[1] === 'heads') { //we are on a branch
