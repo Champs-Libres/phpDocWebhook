@@ -18,4 +18,10 @@ NOTE : your webserver user (`www-data`, ...) should have write permissions to th
 - Create a webhooks which will point to http://path.to.your.host/generate.php
 - add the secret if you need it
 
+TODO
+----
 
+- add a license (GPLv3 ?) 
+- test the creation of tags
+- what if we push multiple branches ?
+- check bug about log file (log file is not created nor filled)
