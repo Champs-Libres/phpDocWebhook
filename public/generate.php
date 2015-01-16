@@ -69,13 +69,13 @@ if ($configRepositories === NULL) {
 
 //decode headers and check if this is a push event
 $headers = apache_request_headers();
-if (!isset($headers['X-Github-Event'])) {
+if (!isset($headers['X-GitHub-Event'])) {
    header('HTTP/1.0 400 github headers should be present');
    echo "github header should be present";
    $output[] = "github header missing";
    exit();
 }
-if (!in_array($headers['X-Github-Event'], array( 'push', 'ping')) {
+if (!in_array($headers['X-GitHub-Event'], array( 'push', 'ping'))) {
    header('HTTP/1.0 400 only push event allowed');
    echo 'only push event allowed';
    $output[] = "only push event allowed";
@@ -158,7 +158,7 @@ if (!file_exists($clonePath)) {
 }
 
 //extract ref and switch to ref
-if ($headers['X-Github-Event'] === 'ping') { //if ping, we work on master branch
+if ($headers['X-GitHub-Event'] === 'ping') { //if ping, we work on master branch
    $payload['ref'] = 'refs/heads/master';
 }
 
