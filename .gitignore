@@ -2,3 +2,4 @@
 public/*
 !public/generate.php
 conf/config.php
+conf/repository.json
